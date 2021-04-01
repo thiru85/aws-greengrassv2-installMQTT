@@ -10,14 +10,11 @@ if [[ ! -d $1/lists ]]; then
       mkdir -p $1/lists
 fi
 
-if ["${VERSION_ID}" = "9"]; then
+if [[ $VERSION_ID = "9" ]]; then
       VER="stretch"
-elif ["${VERSION_ID}" = "10"]; then
+elif [[ $VERSION_ID = "10" ]]; then
       VER="buster"
 fi
-
-
-VER=$VERSION_CODENAME
 
 curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $1/manifest/mosquitto-repo.gpg.key
 
