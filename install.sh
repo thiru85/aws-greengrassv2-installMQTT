@@ -33,7 +33,7 @@ apt-key add $1/manifest/mosquitto-repo.gpg.key
 
 curl http://repo.mosquitto.org/debian/mosquitto-$VER.list -o $1/lists/mosquitto-$VER.list
 
-cp $1/lists/mosquitto-stretch.list /etc/apt/sources.list.d/
+cp $1/lists/mosquitto-$VER.list /etc/apt/sources.list.d/
 
 apt-get update
 apt-get install mosquitto mosquitto-clients --yes
