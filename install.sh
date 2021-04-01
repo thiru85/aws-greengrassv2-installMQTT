@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# This should deploy well on a Raspberry Pi
+. /etc/os-release
 
 if [[ ! -d $1/manifest ]]; then
       mkdir -p $1/manifest
@@ -9,11 +10,13 @@ if [[ ! -d $1/lists ]]; then
       mkdir -p $1/lists
 fi
 
+VER=$VERSION_CODENAME
+
 curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $1/manifest/mosquitto-repo.gpg.key
 
 apt-key add $MosquittoRoot/manifest/mosquitto-repo.gpg.key
 
-curl http://repo.mosquitto.org/debian/mosquitto-stretch.list -o $1/lists/mosquitto-stretch.list
+curl http://repo.mosquitto.org/debian/mosquitto-$VER.list -o $1/lists/mosquitto-$VER.list
 
 cp $MosquittoRoot/lists/mosquitto-stretch.list /etc/apt/sources.list.d/
 
