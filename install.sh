@@ -1,13 +1,12 @@
 #!/bin/bash
 
-MosquittoRoot = $1
 
-if [[ ! -d $MosquittoRoot/manifest ]]; then
-      mkdir -p $MosquittoRoot/manifest
+if [[ ! -d $1/manifest ]]; then
+      mkdir -p $1/manifest
 fi
 
-if [[ ! -d $mlRootPath/lists ]]; then
-      mkdir -p $MosquittoRoot/lists
+if [[ ! -d $1/lists ]]; then
+      mkdir -p $1/lists
 fi
 
 curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $MosquittoRoot/manifest/mosquitto-repo.gpg.key
