@@ -9,11 +9,11 @@ if [[ ! -d $1/lists ]]; then
       mkdir -p $1/lists
 fi
 
-curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $MosquittoRoot/manifest/mosquitto-repo.gpg.key
+curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $1/manifest/mosquitto-repo.gpg.key
 
 apt-key add $MosquittoRoot/manifest/mosquitto-repo.gpg.key
 
-curl http://repo.mosquitto.org/debian/mosquitto-stretch.list -o $MosquittoRoot/lists/mosquitto-stretch.list
+curl http://repo.mosquitto.org/debian/mosquitto-stretch.list -o $1/lists/mosquitto-stretch.list
 
 cp $MosquittoRoot/lists/mosquitto-stretch.list /etc/apt/sources.list.d/
 
