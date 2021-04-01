@@ -26,6 +26,9 @@ MOSQUITTO_PORT=1883
 MQTT_BROKER_IP='0.0.0.0'
 
 touch /etc/mosquitto/conf.d/local.conf
+
+cat /dev/null > /etc/mosquitto/conf.d/local.conf
+
 echo -e "\nlistener $MOSQUITTO_PORT $MQTT_BROKER_IP\nallow_anonymous true\n" >> /etc/mosquitto/conf.d/local.conf
 
 systemctl start mosquitto.service
