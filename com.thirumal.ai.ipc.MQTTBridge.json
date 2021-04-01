@@ -1,0 +1,79 @@
+{
+  "RecipeFormatVersion": "2020-01-25",
+  "ComponentName": "com.thirumal.ai.ipc.publishToIoTCore",
+  "ComponentVersion": "1.0.4",
+  "ComponentType": "aws.greengrass.generic",
+  "ComponentDescription": "A component that publishes messages.",
+  "ComponentPublisher": "thirumal.ai",
+  "ComponentConfiguration": {
+    "DefaultConfiguration": {
+      "IPCRootPath": "$HOME/ipcdir",
+      "accessControl": {
+        "aws.greengrass.ipc.pubsub": {
+          "com.thirumal.ai.ipc.publishToIoTCore": {
+            "policyDescription": "Allows access to publish to all topics.",
+            "operations": [
+              "aws.greengrass#PublishToTopic"
+            ],
+            "resources": [
+              "*"
+            ]
+          }
+        },
+        "aws.greengrass.ipc.mqttproxy": {
+          "com.thirumal.ai.ipc.publishToIoTCore": {
+            "policyDescription": "Allows access to publish to all AWS IoT Core topics.",
+            "operations": [
+              "aws.greengrass#PublishToIoTCore"
+            ],
+            "resources": [
+              "*"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ComponentDependencies": {
+    "aws.greengrass.Nucleus": {
+      "VersionRequirement": ">=2.0.3 <2.1.0",
+      "DependencyType": "SOFT"
+    },
+    "aws.greengrass.Cli": {
+      "VersionRequirement": ">=2.0.3 <2.1.0",
+      "DependencyType": "SOFT"
+    }
+  },
+  "Manifests": [
+    {
+      "Lifecycle": {
+        "install": {
+          "RequiresPrivilege": "true",
+          "script": "apt-get update --quiet && apt-get --yes install python3 python3-pip cmake libssl-dev && python3 -m venv {configuration:/IPCRootPath}/ipcvenv \n source {configuration:/IPCRootPath}/ipcvenv/bin/activate\n pip3 install awsiotsdk==1.5.4\n",
+          "timeout": "900"
+        },
+        "run": {
+          "RequiresPrivilege": "true",
+          "script": "python3 -u {artifacts:path}/ipc_greengrass.py"
+        },
+        "shutdown": {
+          "RequiresPrivilege": "true",
+          "script": "deactivate"
+        }
+      },
+      "Artifacts": [
+        {
+          "Uri": "s3://taiyalu-iot-bucket/ipc_greengrass.py",
+          "Digest": "t/UB+1DlNHwu9FqkHr7ANO+NxP2oxLLO6v3zFI2Ydh4=",
+          "Algorithm": "SHA-256",
+          "Unarchive": "NONE",
+          "Permission": {
+            "Read": "OWNER",
+            "Execute": "NONE"
+          }
+        }
+      ]
+    }
+  ],
+  "Lifecycle": {}
+}
