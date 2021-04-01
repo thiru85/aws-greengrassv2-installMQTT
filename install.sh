@@ -14,7 +14,9 @@ curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key -o $MosquittoRoot/m
 
 apt-key add $MosquittoRoot/manifest/mosquitto-repo.gpg.key
 
-curl http://repo.mosquitto.org/debian/mosquitto-stretch.list -o /etc/apt/sources.list.d
+curl http://repo.mosquitto.org/debian/mosquitto-stretch.list -o $MosquittoRoot/lists/mosquitto-stretch.list
+
+cp $MosquittoRoot/lists/mosquitto-stretch.list /etc/apt/sources.list.d/
 
 apt-get update
 apt-get install mosquitto mosquitto-clients --yes
