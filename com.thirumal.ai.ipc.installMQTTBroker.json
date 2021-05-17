@@ -31,9 +31,7 @@
       },
       "Artifacts": [
         {
-          "Uri": "s3://taiyalu-iot-bucket/install.sh",
-          "Digest": "t/UB+1DlNHwu9FqkHr7ANO+NxP2oxLLO6v3zFI2Ydh4=",
-          "Algorithm": "SHA-256",
+          "Uri": "s3://devax-iot-bucket/install.sh",
           "Unarchive": "NONE",
           "Permission": {
             "Read": "OWNER",
